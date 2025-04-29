@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting z extract web-search colored-man-pages)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting z extract web-search colored-man-pages you-should-use sudo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,8 +116,11 @@ source $ZSH/oh-my-zsh.sh
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
+### Other config ###
+export EDITOR='nvim'
 alias vi="vim"
 
+### yazi config ###
 # yazi function:它能够在退出 Yazi 时更改当前工作目录。
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
@@ -127,7 +130,6 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
-export EDITOR=vim
 
 # exa config
 alias ls="eza --icons"
@@ -143,9 +145,48 @@ eval "$(zoxide init zsh --cmd z)"
 alias cat="bat"
 
 ### ysyx config
-export NPC_HOME="/home/theo/Desktop/byd-ysyx/npc"
 export NVBOARD_HOME=/home/theo/Desktop/byd-ysyx/nvboard
+export NEMU_HOME="/home/theo/Desktop/byd-ysyx/nemu"
+export AM_HOME="/home/theo/Desktop/byd-ysyx/abstract-machine"
+export YOSYS_HOME="/home/theo/Desktop/byd-ysyx/yosys-sta"
+# export VERILATOR_ROOT="/usr"
 
 ### esp config
 alias get_idf='. $HOME/esp/esp-idf-v5.3.1/export.sh'
 alias idf='idf.py'
+
+### tmux config ###
+tm() {
+		tmux at -t $1
+}
+tmk() {
+		tmux kill-session -t "$1"
+}
+
+### fcitx5 ###
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx5
+export XMODIFIERS=@im=fcitx
+
+### JAVA config ###
+export JAVA_HOME="/usr/lib/jvm/java-23-openjdk"
+export PATH=$JAVA_HOME/bin:$PATH
+
+### Kitty config ###
+alias icat="kitty +kitten icat"
+
+### RTT config ###
+# export RTT_ROOT=/home/theo/Templates/rt-thread-am
+
+### pyenv config ###
+# Created by `pipx` on 2025-01-10 09:14:23
+export PATH="$PATH:/home/theo/.local/bin"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+eval "$(pyenv virtualenv-init -)"
+export NPC_HOME=/home/theo/Desktop/byd-ysyx/npc
+
+### Opencv ###
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
